@@ -3,6 +3,7 @@ import { Model } from 'objection';
 
 import { enRoles, IUser } from '../interfaces/user';
 import { Device } from './device';
+import { Sale } from './sale';
 
 export class User extends Model implements IUser {
   @ApiProperty({ type: 'integer' })
@@ -41,6 +42,14 @@ export class User extends Model implements IUser {
         join: {
           from: 'User.id',
           to: 'Device.userId'
+        }
+      },
+      sales: {
+        relation: Model.HasManyRelation,
+        modelClass: Sale,
+        join: {
+          from: 'User.id',
+          to: 'Sale.userId'
         }
       }
     };
