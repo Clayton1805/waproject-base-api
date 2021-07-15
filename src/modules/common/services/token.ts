@@ -55,9 +55,10 @@ export class TokenService {
     return new Promise<T>((resolve, reject) => {
       jwt.verify(token, AUTH.secret, (err: any, decoded: any) => {
         if (err || !decoded || decoded.type !== type) {
+          console.log('jwd verify', err);
           return reject(this.resolveVerifyError(err));
         }
-
+        console.log('jwd fooiiiii');
         resolve(decoded);
       });
     });
