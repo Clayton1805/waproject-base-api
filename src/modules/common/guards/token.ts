@@ -19,7 +19,6 @@ export class TokenGuard implements CanActivate {
   public async canActivate(context: ExecutionContext) {
     const request = context.switchToHttp().getRequest();
     const user: ICurrentUser = request.user;
-    console.log('user', user);
     if (!user) {
       return false;
     }
